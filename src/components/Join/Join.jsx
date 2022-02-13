@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
+import socket from "../../socket";
+
 import style from './Join.module.scss';
 
 const Join = ({onLogin}) => {
@@ -10,7 +12,7 @@ const Join = ({onLogin}) => {
 
 //   const onEnter = async () => {
 //     if (!roomId || !userName) {
-//       return alert("Неверные данные");
+//       return alert("Wrong data");
 //     }
 //     const obj = {
 //       roomId,
