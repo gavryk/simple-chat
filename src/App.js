@@ -1,12 +1,16 @@
 import React from 'react';
 import io from 'socket.io-client';
-
-const socket = io("http://localhost:9999/");
+import { Join } from './components';
 
 const App = () => {
+
+  const connectSocket = () => {
+    io("http://localhost:9999/");
+  }
+
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div className="AppWrapper">
+        <Join />
     </div>
   );
 }

@@ -1,0 +1,25 @@
+.joinBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  .joinForm {
+    width: 400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+    .joinTitle {
+        text-align: center;
+    }
+    > div {
+      > div {
+        border-radius: 15px;
+      }
+    }
+    button {
+      padding: 15px;
+      border-radius: 15px;
+    }
+  }
+}
