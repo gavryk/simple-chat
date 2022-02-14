@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
 import socket from "../../socket";
@@ -6,22 +6,22 @@ import socket from "../../socket";
 import style from './Join.module.scss';
 
 const Join = ({onLogin}) => {
-  const [roomId, setRoomId] = React.useState("");
-  const [userName, setUserName] = React.useState("");
-  const [isLoading, setLoading] = React.useState(false);
+  const [roomId, setRoomId] = useState("");
+  const [userName, setUserName] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
-//   const onEnter = async () => {
-//     if (!roomId || !userName) {
-//       return alert("Wrong data");
-//     }
-//     const obj = {
-//       roomId,
-//       userName,
-//     };
-//     setLoading(true);
-//     await axios.post("/rooms", obj);
-//     onLogin(obj);
-//   };
+  const onEnter = async () => {
+    if (!roomId || !userName) {
+      return alert("Wrong data");
+    }
+    const obj = {
+      roomId,
+      userName,
+    };
+    setLoading(true);
+    await axios.post("/rooms", obj);
+    onLogin(obj);
+  };
 
   return (
     <div className={style.joinBlock}>
@@ -34,20 +34,20 @@ const Join = ({onLogin}) => {
           label="Room ID"
           variant="outlined"
           value={roomId}
-          // onChange={(e) => setRoomId(e.target.value)}
+          onChange={(e) => setRoomId(e.target.value)}
         />
         <TextField
           id="outlined-name"
           label="Your Name"
           variant="outlined"
           value={userName}
-          // onChange={(e) => setUserName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <Button
           variant="contained"
           disabled={isLoading}
           size="large"
-          // onClick={onEnter}
+          onClick={onEnter}
         >
           {isLoading ? "Entering..." : "Enter"}
         </Button>
