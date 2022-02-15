@@ -1,4 +1,4 @@
-const chat = (state, action) => {
+export default (state, action) => {
     switch (action.type) {
       case "JOINED":
         return {
@@ -11,5 +11,3 @@ const chat = (state, action) => {
         return state;
     }
 }
-
-export default chat;

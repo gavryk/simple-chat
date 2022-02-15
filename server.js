@@ -23,12 +23,12 @@ app.post('/rooms', (req, res) => {
     res.send();
 })
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
     socket.on('ROOM:JOIN', ({roomId, userName}) => {
         socket.join(roomId);
-        rooms.get(roomId).get('users').set(socket.id, userName);
-        const users = [...rooms.get(roomId).get('users').values()];
-        socket.to(roomId).broadcast.emit('ROOM:JOINED', users);
+        rooms.get(roomId).get("users").set(socket.id, userName);
+        const users = [...rooms.get(roomId).get("users").values()];
+        socket.to(roomId).emit('ROOM:JOINED', users);
     })
 
     console.log('user connected', socket.id);

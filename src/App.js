@@ -1,5 +1,5 @@
-import React, { useReducer } from 'react';
-import { Join } from './components';
+import React, { useEffect, useReducer } from 'react';
+import { Chat, Join } from './components';
 import reducer from './reducer';
 import socket from './socket';
 
@@ -16,15 +16,18 @@ const App = () => {
       type: "JOINED",
       payload: obj
     });
-
     socket.emit("ROOM:JOIN", obj);
   }
 
-  console.log(state);
+  useEffect(() => {
+    socket.on("ROOM:JOINED", (users) => {
+      console.log(users);
+    });
+  }, []);
 
   return (
     <div className="AppWrapper">
-      {!state.joined && <Join onLogin={onLogin} />}
+      {!state.joined ? <Join onLogin={onLogin} /> : <Chat />}
     </div>
   );
 }
