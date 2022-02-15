@@ -11,6 +11,7 @@ const Join = ({onLogin}) => {
   const [isLoading, setLoading] = useState(false);
 
   const onEnter = async () => {
+    
     if (!roomId || !userName) {
       return alert("Wrong data");
     }

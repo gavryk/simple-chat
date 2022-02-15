@@ -1,11 +1,15 @@
-export default (state, action) => {
+const chat = (state, action) => {
     switch (action.type) {
-        case "IS_AUTH":
-            return {
-                ...state,
-                isAuth: action.payload
-            }
-        default:
-            return state;
+      case "JOINED":
+        return {
+          ...state,
+          joined: true,
+          userName: action.payload.userName,
+          roomId: action.payload.roomId,
+        };
+      default:
+        return state;
     }
 }
+
+export default chat;
