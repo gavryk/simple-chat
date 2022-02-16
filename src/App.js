@@ -4,6 +4,7 @@ import reducer from './reducer';
 import socket from './socket';
 
 
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, {
     joined: false,
@@ -23,7 +24,9 @@ const App = () => {
     socket.on("ROOM:JOINED", (users) => {
       console.log(users);
     });
-  }, []);
+  }, [])
+
+  window.socket = socket;
 
   return (
     <div className="AppWrapper">

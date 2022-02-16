@@ -1,6 +1,62 @@
 .chatWrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: calc(100% - 100px);
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  .chatSidebar {
+    padding: 30px 25px;
+    background-color: #f6f9fa;
+    .users {
+      list-style: none;
+      margin: 15px 0;
+      li {
+        padding: 15px 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .chatMessages {
+    padding: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+    .messages {
+      .message {
+        p {
+          display: inline-flex;
+          border-radius: 10px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          background-color: #7160ff;
+          padding: 10px 15px 15px;
+          color: #fff;
+          margin-bottom: 10px;
+        }
+        span {
+          opacity: 0.5;
+          font-size: 14px;
+        }
+      }
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 15px;
+      textarea {
+        min-height: 100px;
+        padding: 10px;
+        border: 1px solid rgba(228, 228, 228, 0.7);
+        border-radius: 15px;
+        outline: none;
+      }
+      .sendBtn {
+        text-align: left;
+      }
+    }
+  }
 }
