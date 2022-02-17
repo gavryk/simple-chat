@@ -2,15 +2,19 @@ import React from 'react';
 import style from './Chat.module.scss';
 import { Button } from "@mui/material";
 
-const Chat = () => {
+const Chat = ({users}) => {
   return (
     <div className={style.chatWrapper}>
       <div className={style.chatSidebar}>
-        <h4>Online (10)</h4>
+        <h4>Online ({users.length})</h4>
         <ul className={style.users}>
-          <li>Oleg</li>
-          <li>Oleg</li>
-          <li>Oleg</li>
+          {
+            users.map((user, index) => {
+              return (
+                <li key={`${user}_${index}`}>{user}</li>
+              )
+            })
+          }
         </ul>
       </div>
       <div className={style.chatMessages}>
@@ -51,7 +55,7 @@ const Chat = () => {
         </div>
         <form>
           <textarea
-            value="Message"
+            defaultValue="Message"
             className="form-control"
             rows="3"
           ></textarea>
