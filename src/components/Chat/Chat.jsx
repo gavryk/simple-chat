@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Chat.module.scss';
 import { Button } from "@mui/material";
 
-const Chat = ({users}) => {
+const Chat = ({users, messages}) => {
   return (
     <div className={style.chatWrapper}>
       <div className={style.chatSidebar}>
@@ -19,39 +19,18 @@ const Chat = ({users}) => {
       </div>
       <div className={style.chatMessages}>
         <div className={style.messages}>
-          <div className={style.message}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
-              pariatur amet minus possimus tempore itaque omnis veritatis
-              reprehenderit quae est blanditiis atque perspiciatis deleniti fuga
-              inventore saepe beatae! Distinctio, tempora?
-            </p>
-            <div>
-              <span>Oleg</span>
-            </div>
-          </div>
-          <div className={style.message}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
-              pariatur amet minus possimus tempore itaque omnis veritatis
-              reprehenderit quae est blanditiis atque perspiciatis deleniti fuga
-              inventore saepe beatae! Distinctio, tempora?
-            </p>
-            <div>
-              <span>Oleg</span>
-            </div>
-          </div>
-          <div className={style.message}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
-              pariatur amet minus possimus tempore itaque omnis veritatis
-              reprehenderit quae est blanditiis atque perspiciatis deleniti fuga
-              inventore saepe beatae! Distinctio, tempora?
-            </p>
-            <div>
-              <span>Oleg</span>
-            </div>
-          </div>
+          {
+            messages.map((message, index) => {
+              return (
+                <div key={`${message.userName}_${index}`} className={style.message}>
+                  <p>{message.text}</p>
+                  <div>
+                    <span>{message.userName}</span>
+                  </div>
+                </div>
+              )
+            })
+          }
         </div>
         <form>
           <textarea
