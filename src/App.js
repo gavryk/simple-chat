@@ -20,13 +20,10 @@ const App = () => {
     });
   };
 
-  const setAddMessage = ({text, userName}) => {
+  const setAddMessage = (message) => {
     dispatch({
       type: "NEW_MESSAGE",
-      payload: {
-        text,
-        userName
-      },
+      payload: message,
     });
   };
 
@@ -49,7 +46,7 @@ const App = () => {
 
   return (
     <div className="AppWrapper">
-      {!state.joined ? <Join onLogin={onLogin} /> : <Chat {...state} />}
+      {!state.joined ? <Join onLogin={onLogin} /> : <Chat {...state} onAddMessage={setAddMessage}/>}
     </div>
   );
 };

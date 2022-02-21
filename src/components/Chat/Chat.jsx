@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './Chat.module.scss';
 import { Button } from "@mui/material";
 import socket from '../../socket';
 
-const Chat = ({users, messages, userName, roomId}) => {
+const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
   const [messageValue, setMessageValue] = useState('');
+  const msgRef = useRef(null);
 
   const onSendMessage = () => {
     socket.emit('ROOM:NEW_MESSAGE', {
@@ -12,13 +13,18 @@ const Chat = ({users, messages, userName, roomId}) => {
       roomId,
       text: messageValue,
     });
+    onAddMessage({ userName, text: messageValue })
     setMessageValue('');
   }
+
+  useEffect(() => {
+    msgRef.current.scrollTo(0, 99999);
+  }, [messages]);
 
   return (
     <div className={style.chatWrapper}>
       <div className={style.chatSidebar}>
-        <h4 style={{marginBottom: 20}} >Room: {roomId}</h4>
+        <h4 style={{ marginBottom: 20 }}>Room: {roomId}</h4>
         <h4>Online ({users.length})</h4>
         <ul className={style.users}>
           {users.map((user, index) => {
@@ -27,7 +33,7 @@ const Chat = ({users, messages, userName, roomId}) => {
         </ul>
       </div>
       <div className={style.chatMessages}>
-        <div className={style.messages}>
+        <div ref={msgRef} className={style.messages}>
           {messages.map((message, index) => {
             return (
               <div

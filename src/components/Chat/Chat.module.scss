@@ -22,12 +22,16 @@
   }
   .chatMessages {
     padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 150px;
+    grid-gap: 15px;
+    height: 100%;
+    overflow: auto;
     .messages {
+      max-height: 100%;
+      overflow-y: auto;
       .message {
+        margin-bottom: 15px;
         p {
           display: inline-flex;
           border-radius: 10px;
