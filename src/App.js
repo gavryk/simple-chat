@@ -13,10 +13,20 @@ const App = () => {
     messages: [],
   });
 
-  const setUsers = (params) => {
+  const setUsers = (users) => {
     dispatch({
       type: "SET_USERS",
-      payload: params,
+      payload: users,
+    });
+  };
+
+  const setAddMessage = ({text, userName}) => {
+    dispatch({
+      type: "NEW_MESSAGE",
+      payload: {
+        text,
+        userName
+      },
     });
   };
 
@@ -31,7 +41,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    socket.on("ROOM:SET_USERS", (users) => setUsers(users));
+    socket.on("ROOM:SET_USERS", setUsers);
+    socket.on("ROOM:NEW_MESSAGE", setAddMessage);
   }, []);
 
   window.socket = socket;
